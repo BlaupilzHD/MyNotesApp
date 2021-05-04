@@ -1,4 +1,4 @@
-package com.dicoding.mynotesapp
+package com.dicoding.consumerapp
 
 import android.content.ContentValues
 import android.content.Intent
@@ -10,13 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.dicoding.mynotesapp.databinding.ActivityNoteAddUpdateBinding
-import com.dicoding.mynotesapp.db.DatabaseContract
-import com.dicoding.mynotesapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
-import com.dicoding.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DATE
-import com.dicoding.mynotesapp.db.NoteHelper
-import com.dicoding.mynotesapp.entity.Note
-import com.dicoding.mynotesapp.helper.MappingHelper
+import com.dicoding.consumerapp.databinding.ActivityNoteAddUpdateBinding
+import com.dicoding.consumerapp.db.DatabaseContract
+import com.dicoding.consumerapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
+import com.dicoding.consumerapp.db.DatabaseContract.NoteColumns.Companion.DATE
+import com.dicoding.consumerapp.entity.Note
+import com.dicoding.consumerapp.helper.MappingHelper
 import java.text.SimpleDateFormat
 import java.util.*
 

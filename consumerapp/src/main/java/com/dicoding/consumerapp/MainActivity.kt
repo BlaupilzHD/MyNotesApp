@@ -1,4 +1,4 @@
-package com.dicoding.mynotesapp
+package com.dicoding.consumerapp
 
 import android.content.Intent
 import android.database.ContentObserver
@@ -8,11 +8,10 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.mynotesapp.databinding.ActivityMainBinding
-import com.dicoding.mynotesapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
-import com.dicoding.mynotesapp.db.NoteHelper
-import com.dicoding.mynotesapp.entity.Note
-import com.dicoding.mynotesapp.helper.MappingHelper
+import com.dicoding.consumerapp.databinding.ActivityMainBinding
+import com.dicoding.consumerapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
+import com.dicoding.consumerapp.entity.Note
+import com.dicoding.consumerapp.helper.MappingHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Notes"
+        supportActionBar?.title = "Consumer Notes"
 
         binding.rvNotes.layoutManager = LinearLayoutManager(this)
         binding.rvNotes.setHasFixedSize(true)
@@ -69,8 +68,6 @@ class MainActivity : AppCompatActivity() {
     private fun loadNotesAsync() {
         GlobalScope.launch(Dispatchers.Main) {
             binding.progressbar.visibility = View.VISIBLE
-            val noteHelper = NoteHelper.getInstance(applicationContext)
-            noteHelper.open()
             val deferredNotes = async(Dispatchers.IO) {
                 // CONTENT_URI = content://com.dicoding.mynotesapp/note
                 val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
@@ -84,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                 adapter.listNotes = ArrayList()
                 showSnackbarMessage("Tidak ada data saat ini")
             }
-            noteHelper.close()
         }
     }
 
